@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="board" id="b2">
+    <div class="card">
+        <div class="handle"></div>
+        <div class="big">a</div>
+    </div>
+
+    <div class="card">
+        <div class="handle"></div>
+        <div class="big">b</div>
+    </div>
+
+    <div class="card">
+        <div class="handle"></div>
+        <div class="big">c</div>
+    </div>
+</div>
+<script>
+    $(function () {
+        awem.dragReor({ from: $('#b2'), to: '#b2', sel: '.card', handle: '.handle' });
+    });
+</script>
