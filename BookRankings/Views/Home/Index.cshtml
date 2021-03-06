@@ -2,24 +2,74 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="board" id="b2">
-    <div class="card">
-        <div class="handle"></div>
-        <div class="big">a</div>
-    </div>
 
-    <div class="card">
-        <div class="handle"></div>
-        <div class="big">b</div>
-    </div>
+<div ondrop="dropIt(event)" ondragover="allowDrop(event)">
+    <div class="card" id="card6" draggable="true" ondragstart="dragStart(event)" style="display:inline-block;width:200px;">sal <div><span>ba</span></div></div>
+    <div class="card" id="card7" draggable="true" ondragstart="dragStart(event)" style="display:inline-block;width:200px">hei<div> <span>tu</span></div></div>
+</div>
 
-    <div class="card">
-        <div class="handle"></div>
-        <div class="big">c</div>
+<div class="container" >
+    <div class="row" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+        <div class="col-sm" id="1" draggable="true" ondragstart="dragStart(event)">
+            <div class="book-card">
+                <img class="book-card-photo" src="~/BookPhotos/book1.jpeg" />
+                <div class="book-card-info">
+                    <span class="book-card-title" data-toggle="modal" data-target="#exampleModal">Ferma </span>
+                    <p class="book-card-author">George Orwell</p>
+                </div>
+                <div class="book-card-time">
+                    <i class="fas fa-clock"></i>
+                    <span class="book-card-date">23.14.1999</span>
+                </div>
+                <button class="btn btn-outline-primary book-card-remove"><i class="fas fa-trash" style="margin-right:2px"></i>  Remove</button>
+            </div>
+
+        </div>
+        <div class="col-sm" id="2" draggable="true" ondragstart="dragStart(event)">
+            <div class="book-card">
+                <img class="book-card-photo" src="~/BookPhotos/book1.jpeg" />
+                <div class="book-card-info">
+                    <span class="book-card-title">Ferma Animalelor</span>
+                    <p class="book-card-author">George Orwell</p>
+                </div>
+                <div class="book-card-time">
+                    <i class="fas fa-clock"></i>
+                    <span class="book-card-date">23.14.1999</span>
+                </div>
+                <button class="btn btn-outline-primary book-card-remove"><i class="fas fa-trash" style="margin-right:2px"></i>  Remove</button>
+            </div>
+
+        </div>
+        <div class="col-sm" id="3" draggable="true" ondragstart="dragStart(event)">
+            <div class="book-card">
+                <img class="book-card-photo" src="~/BookPhotos/book1.jpeg" />
+                <div class="book-card-info">
+                    <span class="book-card-title">Ferma Animalelor</span>
+                    <p class="book-card-author">George Orwell</p>
+                </div>
+                <div class="book-card-time">
+                    <i class="fas fa-clock"></i>
+                    <span class="book-card-date">23.14.1999</span>
+                </div>
+                <button class="btn btn-outline-primary book-card-remove"><i class="fas fa-trash" style="margin-right:2px"></i>  Remove</button>
+            </div>
+
+        </div>
+        <div class="col-sm" id="4" draggable="true" ondragstart="dragStart(event)">
+            <div class="book-card">
+                <img class="book-card-photo" src="~/BookPhotos/book1.jpeg" />
+                <div class="book-card-info">
+                    <span class="book-card-title">Ferma Animalelor</span>
+                    <p class="book-card-author">George Orwell</p>
+                </div>
+                <div class="book-card-time">
+                    <i class="fas fa-clock"></i>
+                    <span class="book-card-date">23.14.1999</span>
+                </div>
+                <button class="btn btn-outline-primary book-card-remove"><i class="fas fa-trash" style="margin-right:2px"></i>  Remove</button>
+            </div>
+
+        </div>
     </div>
 </div>
-<script>
-    $(function () {
-        awem.dragReor({ from: $('#b2'), to: '#b2', sel: '.card', handle: '.handle' });
-    });
-</script>
+

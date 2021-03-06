@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRankings", "BookRankings\BookRankings.csproj", "{D197C6BC-248B-44DA-8EAD-7320A2B220B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookRankings", "BookRankings\BookRankings.csproj", "{D197C6BC-248B-44DA-8EAD-7320A2B220B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRankings.Model", "BookRankings.Model\BookRankings.Model.csproj", "{719D00E5-5C26-414A-9DA4-0C4A65090FEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D197C6BC-248B-44DA-8EAD-7320A2B220B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D197C6BC-248B-44DA-8EAD-7320A2B220B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D197C6BC-248B-44DA-8EAD-7320A2B220B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{719D00E5-5C26-414A-9DA4-0C4A65090FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{719D00E5-5C26-414A-9DA4-0C4A65090FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{719D00E5-5C26-414A-9DA4-0C4A65090FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{719D00E5-5C26-414A-9DA4-0C4A65090FEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
