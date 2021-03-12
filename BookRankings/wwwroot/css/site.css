@@ -108,7 +108,7 @@ body {
     grid-auto-rows: max-content;
     grid-gap: 10px;
     /* Chrome use a fixed height */
-    height: max-content;
+    /*height: max-content;*/
     padding: 10px;
 }
 
@@ -124,3 +124,29 @@ body {
     padding: 10px;
     cursor: pointer;
 }
+
+.navbar-new-item {
+    color: rgba(255, 255, 255, .8) !important;
+}
+
+.ranking-header{
+    display:flex;
+    align-items : center;
+    margin-bottom : 3rem;
+    width : 100%;
+}
+
+.flex-right{
+    margin-left : auto;
+}
+
+.bg-theme {
+    background-color: #c69963;
+}
+
+.sort-button{
+    display: inline-block;
+    font-size : 18px;
+    padding : 5px 20px;
+}
+
