@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BookRankings.Model
+namespace BookRankings.BusinessLogic
 {
     public class Class1
     {

@@ -1,4 +1,6 @@
 using BookRankings.Data;
+using BookRankings.DataAccess;
+using BookRankings.DataAcess.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,8 +34,16 @@ namespace BookRankings
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDbContext<BooksDbContext>(options => options.UseSqlServer(
+                Configuration.GetConnectionString("BooksContext")));
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<IBookRepository, EFBookRepository>();
+            services.AddScoped<IUserRepository, EFUserRepository>();
+            services.AddScoped<IPostRepository, EFPostRepository>();
+            services.AddScoped<IRankingRepository, EFRankingRepository>();
+            services.AddScoped<IRatingRepository, EFRatingRepository>();
+            services.AddScoped<IUserRepository, EFUserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

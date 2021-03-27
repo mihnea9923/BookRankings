@@ -5,7 +5,13 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookRankings", "BookRankings\BookRankings.csproj", "{D197C6BC-248B-44DA-8EAD-7320A2B220B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRankings.Model", "BookRankings.Model\BookRankings.Model.csproj", "{719D00E5-5C26-414A-9DA4-0C4A65090FEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookRankings.Model", "BookRankings.Model\BookRankings.Model.csproj", "{719D00E5-5C26-414A-9DA4-0C4A65090FEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRankings.DataAccess", "BookRankings.DataAccess\BookRankings.DataAccess.csproj", "{38AADB2C-6100-4FD2-8950-F048AD71597D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRankings.BusinessLogic", "BookRankings.BusinessLogic\BookRankings.BusinessLogic.csproj", "{F3B6BE4F-7DB0-4053-BF41-18C0BFEE3880}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRankings.DataAcess.Abstractions", "BookRankings.DataAcess.Abstractions\BookRankings.DataAcess.Abstractions.csproj", "{F9E47C3E-D9C7-41FE-95D3-EE50B9A059BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{719D00E5-5C26-414A-9DA4-0C4A65090FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{719D00E5-5C26-414A-9DA4-0C4A65090FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{719D00E5-5C26-414A-9DA4-0C4A65090FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38AADB2C-6100-4FD2-8950-F048AD71597D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38AADB2C-6100-4FD2-8950-F048AD71597D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38AADB2C-6100-4FD2-8950-F048AD71597D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38AADB2C-6100-4FD2-8950-F048AD71597D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3B6BE4F-7DB0-4053-BF41-18C0BFEE3880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3B6BE4F-7DB0-4053-BF41-18C0BFEE3880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3B6BE4F-7DB0-4053-BF41-18C0BFEE3880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3B6BE4F-7DB0-4053-BF41-18C0BFEE3880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9E47C3E-D9C7-41FE-95D3-EE50B9A059BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9E47C3E-D9C7-41FE-95D3-EE50B9A059BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9E47C3E-D9C7-41FE-95D3-EE50B9A059BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9E47C3E-D9C7-41FE-95D3-EE50B9A059BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
