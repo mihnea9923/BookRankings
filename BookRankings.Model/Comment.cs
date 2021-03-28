@@ -9,6 +9,6 @@ namespace BookRankings.Model
         public int DepthLevel { get; set; }
         public string Name { get; set; }
         public DateTime AddedDate { get; set; }
-        public List<Comment> Subcomments { get; set; } = new List<Comment>();
+        public virtual List<Comment> Subcomments { get; set; } = new List<Comment>();
     }
 }

@@ -1,3 +1,4 @@
+using BookRankings.BusinessLogic;
 using BookRankings.Data;
 using BookRankings.DataAccess;
 using BookRankings.DataAcess.Abstractions;
@@ -32,9 +33,9 @@ namespace BookRankings
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddDbContext<BooksDbContext>(options => options.UseSqlServer(
+            services.AddDbContext<BooksDbContext>(options => options.UseLazyLoadingProxies().UseSqlServer(
                 Configuration.GetConnectionString("BooksContext")));
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -43,7 +44,13 @@ namespace BookRankings
             services.AddScoped<IPostRepository, EFPostRepository>();
             services.AddScoped<IRankingRepository, EFRankingRepository>();
             services.AddScoped<IRatingRepository, EFRatingRepository>();
-            services.AddScoped<IUserRepository, EFUserRepository>();
+            services.AddScoped<ICommentRepository, EFCommentRepository>();
+            services.AddScoped<BookService>();
+            services.AddScoped<PostService>();
+            services.AddScoped<CommentService>();
+            services.AddScoped<RankingService>();
+            services.AddScoped<RatingService>();
+            services.AddScoped<UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

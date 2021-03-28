@@ -24,6 +24,9 @@ namespace BookRankings.DataAccess.Migrations
                     b.Property<string>("ISBN")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<Guid?>("AddedById")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
@@ -34,6 +37,8 @@ namespace BookRankings.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ISBN");
+
+                    b.HasIndex("AddedById");
 
                     b.ToTable("Books");
                 });
@@ -158,6 +163,13 @@ namespace BookRankings.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("BookRankings.Model.Book", b =>
+                {
+                    b.HasOne("BookRankings.Model.User", "AddedBy")
+                        .WithMany()
+                        .HasForeignKey("AddedById");
                 });
 
             modelBuilder.Entity("BookRankings.Model.Comment", b =>

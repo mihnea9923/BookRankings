@@ -1,60 +1,35 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using BookRankings.Model;
+@model IEnumerable<Book>
+@{int id = 1; }
 <div class="ranking-header">
-    <form asp-controller="" asp-action="" class="search-form no-margin">
+    <form asp-controller="Admin" asp-action="Search" class="search-form no-margin" data-ajax="true"
+           data-ajax-update="#table">
         <div class="search-container">
-            <input class="form-control search-box" style="display:inline-block" placeholder="Search..." />
+            <input name="keyword" class="form-control search-box" style="display:inline-block" placeholder="Search..." />
             <button type="submit" class="search-books"><i class="bi bi-search"></i></button>
         </div>
     </form>
     <div class="new-book-container">
-        <button class="new-book-button"><i class="bi bi-plus-circle"></i>  Add</button>
+        <button class="new-book-button" data-toggle="modal" data-target="#addBook"><i class="bi bi-plus-circle"></i>  Add</button>
     </div>
 
 </div>
-<table class="table table-striped" id="booksRanking">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Author</th>
-            <th scope="col">Photo</th>
-            <th scope="col">Added By</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Ferma Animalelor</td>
-            <td>George Orwell</td>
-            <td>
-                <img src="~/BookPhotos/book1.jpeg" class="book-table-image" />
-            </td>
-            <td>Toma Mihnea</td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>Ferma Animalelor</td>
-            <td>George Orwell</td>
-            <td>
-                <img src="~/BookPhotos/book1.jpeg" class="book-table-image" />
-            </td>
-            <td>Toma Mihnea</td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>Ferma Animalelor</td>
-            <td>George Orwell</td>
-            <td>
-                <img src="~/BookPhotos/book1.jpeg" class="book-table-image" />
-            </td>
-            <td>Toma Mihnea</td>
-        </tr>
-    </tbody>
-</table>
+<div id="table">
+       <partial name="_BookTable" model="@Model" />
+</div>
+
+
+
+<div class="modal fade" id="addBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <partial name="_AddBook" />
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 

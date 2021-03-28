@@ -51,4 +51,7 @@
         holderText='';
 }
     
-  }
+}
+function loadModal(description) {
+    document.getElementById('descriptionBody').innerHTML = description
+}

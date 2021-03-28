@@ -1,0 +1,22 @@
+﻿@{ 
+    Layout = null;
+}
+@*@model AddBookViewModel*@
+@{ int id = 0;}
+<form asp-controller="Admin" asp-action="Add" method="post"  enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="ISBN">ISBN</label>
+        <input name="ISBN" class="form-control" id="ISBN" aria-describedby="emailHelp" placeholder="Enter ISBN">
+    </div>
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input name="Name" class="form-control" id="Name" placeholder="Name">
+    </div>
+    <div class="form-group">
+        <label for="Author">Author</label>
+        <input name="Author" class="form-control" id="Author" placeholder="Author">
+    </div>
+      <input name="bookPhoto" type="file" accept="image/*"  >
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

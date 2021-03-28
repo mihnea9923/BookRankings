@@ -11,6 +11,6 @@ namespace BookRankings.Model
         public DateTime PostedDate { get; set; }
         public int Likes { get; set; }
         public int CommentsNr { get; set; }
-        public List<Comment> Comments { get; set; } = new List<Comment>();
+        public virtual List<Comment> Comments { get; set; } = new List<Comment>();
     }
 }
