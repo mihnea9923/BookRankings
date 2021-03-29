@@ -5,9 +5,9 @@
 @foreach (var rating in Model)
 {
     string path = @rating.Book.ISBN + ".jpg";
-
-    <div class="col-sm" id="1" draggable="true" ondragstart="dragStart(event)">
-        <div class="book-card">
+    if (index % 4 == 0)
+    {
+        <div class="book-card ">
             <img class="book-card-photo" src="~/BookPhotos/@path" />
             <div class="book-card-info">
                 <span class="book-card-title" data-toggle="modal" data-target="#exampleModal">@rating.Book.Name </span>
@@ -15,11 +15,27 @@
             </div>
             <div class="book-card-time">
                 <i class="far fa-clock"></i>
-                <span class="book-card-date">@rating.AddedDate</span>
+                <span class="book-card-date">@rating.AddedDate.ToShortDateString()</span>
             </div>
             <p onclick="loadModal('@rating.Description')" class="book-card-description" data-toggle="modal" data-target="#description"><i class="bi bi-file-earmark"></i> Description...</p>
-            <a asp-controller="Home" asp-action="Remove" asp-route-id="@rating.Id" class="btn btn-outline-primary book-card-remove"><i class="fas fa-trash" style="margin-right:2px"></i>  Remove</a>
+            <a data-ajax="true" data-ajax-update="#container" asp-controller="Home" asp-action="Remove" asp-route-id="@rating.Id" class="btn btn-outline-primary book-card-remove"><i class="fas fa-trash" style="margin-right:2px"></i>  Remove</a>
         </div>
-    </div>
-
+    }
+    else
+    {
+        <div class="book-card book-card-margin">
+            <img class="book-card-photo" src="~/BookPhotos/@path" />
+            <div class="book-card-info">
+                <span class="book-card-title" data-toggle="modal" data-target="#exampleModal">@rating.Book.Name </span>
+                <p class="book-card-author">@rating.Book.Author</p>
+            </div>
+            <div class="book-card-time">
+                <i class="far fa-clock"></i>
+                <span class="book-card-date">@rating.AddedDate.ToShortDateString()</span>
+            </div>
+            <p onclick="loadModal('@rating.Description')" class="book-card-description" data-toggle="modal" data-target="#description"><i class="bi bi-file-earmark"></i> Description...</p>
+            <a data-ajax="true" data-ajax-update="#container" asp-controller="Home" asp-action="Remove" asp-route-id="@rating.Id" class="btn btn-outline-primary book-card-remove"><i class="fas fa-trash" style="margin-right:2px"></i>  Remove</a>
+        </div>
+    }
+    index++;
 }

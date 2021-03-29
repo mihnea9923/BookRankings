@@ -58,6 +58,10 @@
     cursor: pointer;
 }
 
+.discussion-likes-link{
+    text-decoration : none !important;
+}
+
 .discussion-form {
     margin-left: 0px !important;
 }

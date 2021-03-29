@@ -45,12 +45,14 @@ namespace BookRankings
             services.AddScoped<IRankingRepository, EFRankingRepository>();
             services.AddScoped<IRatingRepository, EFRatingRepository>();
             services.AddScoped<ICommentRepository, EFCommentRepository>();
+            services.AddScoped<IUserLikeRepository, EFUserLikeRepository>();
             services.AddScoped<BookService>();
             services.AddScoped<PostService>();
             services.AddScoped<CommentService>();
             services.AddScoped<RankingService>();
             services.AddScoped<RatingService>();
             services.AddScoped<UserService>();
+            services.AddScoped<UserLikeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

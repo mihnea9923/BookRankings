@@ -7,5 +7,6 @@ namespace BookRankings.DataAcess.Abstractions
 {
     public interface IRankingRepository : IRepository<Ranking>
     {
+        Ranking GetByBook(Book book);
     }
 }

@@ -1,0 +1,30 @@
+﻿@using BookRankings.ViewModels
+@model List<RankingUserRatingViewModel>
+@{ int index = 1;}
+    <table class="table table-striped" id="booksRanking">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Author</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Your Rating</th>
+                <th scope="col">Votes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var it in Model)
+            {
+                decimal rating = it.Ranking.Rating / it.Ranking.Votes;
+                <tr>
+                    <td>@index</td>
+                    <td>@it.Ranking.Book.Name</td>
+                    <td>@it.Ranking.Book.Author</td>
+                    <td>@rating.ToString("0.00")</td>
+                    <td>@it.MyRating</td>
+                    <td>@it.Ranking.Votes</td>
+                </tr>
+                index++;
+            }
+        </tbody>
+    </table>

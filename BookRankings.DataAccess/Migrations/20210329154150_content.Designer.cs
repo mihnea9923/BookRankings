@@ -4,14 +4,16 @@ using BookRankings.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookRankings.DataAccess.Migrations
 {
     [DbContext(typeof(BooksDbContext))]
-    partial class BooksDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210329154150_content")]
+    partial class content
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,16 +66,11 @@ namespace BookRankings.DataAccess.Migrations
                     b.Property<Guid?>("PostId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CommentId");
 
                     b.HasIndex("PostId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -173,27 +170,6 @@ namespace BookRankings.DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("BookRankings.Model.UserLike", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("PostId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserLikes");
-                });
-
             modelBuilder.Entity("BookRankings.Model.Book", b =>
                 {
                     b.HasOne("BookRankings.Model.User", "AddedBy")
@@ -210,10 +186,6 @@ namespace BookRankings.DataAccess.Migrations
                     b.HasOne("BookRankings.Model.Post", null)
                         .WithMany("Comments")
                         .HasForeignKey("PostId");
-
-                    b.HasOne("BookRankings.Model.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("BookRankings.Model.Ranking", b =>
@@ -231,17 +203,6 @@ namespace BookRankings.DataAccess.Migrations
 
                     b.HasOne("BookRankings.Model.User", null)
                         .WithMany("Ratings")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("BookRankings.Model.UserLike", b =>
-                {
-                    b.HasOne("BookRankings.Model.Post", "Post")
-                        .WithMany()
-                        .HasForeignKey("PostId");
-
-                    b.HasOne("BookRankings.Model.User", "User")
-                        .WithMany()
                         .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618

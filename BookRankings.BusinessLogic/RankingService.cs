@@ -14,5 +14,20 @@ namespace BookRankings.BusinessLogic
         {
             this.rankingRepository = rankingRepository;
         }
+
+        public void AddByBook(Rating rating)
+        {
+            Ranking ranking = rankingRepository.GetByBook(rating.Book);
+            if (ranking == null)
+                ranking = new Ranking() { Book = rating.Book, Rating = rating.Grade, Votes = 1 };
+            else
+            {
+                ranking.Votes++;
+                ranking.Rating += rating.Grade;
+            }
+            rankingRepository.Update(ranking);
+        }
+
+       
     }
 }

@@ -2,6 +2,7 @@
 using BookRankings.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BookRankings.DataAccess
@@ -13,6 +14,11 @@ namespace BookRankings.DataAccess
         public EFRankingRepository(BooksDbContext context) : base(context)
         {
             this.context = context;
+        }
+
+        public Ranking GetByBook(Book book)
+        {
+            return context.Rankings.FirstOrDefault(o => o.Book == book);
         }
     }
 }

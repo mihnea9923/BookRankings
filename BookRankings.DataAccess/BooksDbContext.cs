@@ -16,6 +16,7 @@ namespace BookRankings.DataAccess
         public DbSet<Ranking> Rankings { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<UserLike> UserLikes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Book>().HasKey(o => o.ISBN);

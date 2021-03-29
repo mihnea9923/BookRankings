@@ -55,3 +55,40 @@
 function loadModal(description) {
     document.getElementById('descriptionBody').innerHTML = description
 }
+
+function search() {
+    value = document.getElementById('searchInput').value
+    $.get('Home/Search?keyword=' + value,
+        function (data) {
+            $('#container').html(data)
+        }
+        
+    )
+}
+
+function searchRanking() {
+    value = document.getElementById('rankingSearchInput').value
+    $.get('Ranking/Search?keyword=' + value,
+        function (data) {
+            $('#container').html(data)
+        }
+
+    )
+}
+
+
+function searchPosts() {
+    value = document.getElementById('postsSearchInput').value
+    $.get('Forum/Search?keyword=' + value,
+        function (data) {
+            $('#container').html(data)
+        }
+
+    )
+}
+
+function updateBooks(data) {
+    document.getElementById('container').innerHTML = data
+}
+
+function stopBubbling($event) { event.stopPropagation() }

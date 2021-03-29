@@ -1,73 +1,63 @@
-﻿
+﻿@using BookRankings.ViewModels
 <div class="book-header">
 
     <form asp-controller="" asp-action="" class="search-form discussion-form">
         <div class="search-container">
-            <input class="form-control search-box" style="display:inline-block" placeholder="Search..." />
+            <input onkeyup="searchPosts()" id="postsSearchInput" class="form-control search-box" style="display:inline-block" placeholder="Search..." />
             <button type="submit" class="search-books"><i class="bi bi-search"></i></button>
         </div>
     </form>
-        <button class="new-book-button"><i class="bi bi-plus-circle"></i>  Add</button>
+    <button class="new-book-button" data-target="#newPost" data-toggle="modal"><i class="bi bi-plus-circle"></i>  Add</button>
 </div>
 
-<div class="discussion">
-    <div class="discussion-header">
-        <div class="discussion-book">
-            Ferma Animalelor
-        </div>
-        <span class="discussion-date">
-            <i class="far fa-clock"></i> 12/3/2021
-        </span>
-    </div>
-    <div class="discussion-content">
-        It is awesome It is awesome It is awesome It is awesome It is awesome
-        It is awesome It is awesome It is awesome It is awesome It is awesome
-        It is awesome It is awesome It is awesome It is awesome It is awesome
-        It is awesome It is awesome It is awesome It is awesome It is awesome
-    </div>
-    <div class="discussion-footer">
-        <div class="discussion-likes"><i class="far fa-thumbs-up"></i> 64</div>
-        <div class="discussion-comments"><i class="fas fa-comment" style="color : red"></i>14</div>
-    </div>
+<div id="container">
+    <partial name="_Posts" model="@Model" />
 </div>
 
-<div class="discussion">
-    <div class="discussion-header">
-        <div class="discussion-book">
-            Ferma Animalelor
+
+@*<div class="discussion">
+        <div class="discussion-header">
+            <div class="discussion-book">
+                Ferma Animalelor
+            </div>
+            <span class="discussion-date">
+                <i class="far fa-clock"></i> 12/3/2021
+            </span>
         </div>
-        <span class="discussion-date">
-            <i class="far fa-clock"></i> 12/3/2021
-        </span>
-    </div>
-    <div class="discussion-content">
-        It is awesome It is awesome It is awesome It is awesome It is awesome
-        It is awesome It is awesome It is awesome It is awesome It is awesome
-        It is awesome It is awesome It is awesome It is awesome It is awesome
-        It is awesome It is awesome It is awesome It is awesome It is awesome
-    </div>
-    <div class="discussion-footer">
-        <div class="discussion-likes"><i class="far fa-thumbs-up"></i> 64</div>
-        <div class="discussion-comments"><i class="fas fa-comment" style="color : red"></i>14</div>
-    </div>
-</div>
-<div class="discussion">
-    <div class="discussion-header">
-        <div class="discussion-book">
-            Ferma Animalelor
+        <div class="discussion-content">
+            It is awesome It is awesome It is awesome It is awesome It is awesome
+            It is awesome It is awesome It is awesome It is awesome It is awesome
+            It is awesome It is awesome It is awesome It is awesome It is awesome
+            It is awesome It is awesome It is awesome It is awesome It is awesome
         </div>
-        <span class="discussion-date">
-            <i class="far fa-clock"></i> 12/3/2021
-        </span>
-    </div>
-    <div class="discussion-content">
-        It is awesome It is awesome It is awesome It is awesome It is awesome
-        It is awesome It is awesome It is awesome It is awesome It is awesome
-        It is awesome It is awesome It is awesome It is awesome It is awesome
-        It is awesome It is awesome It is awesome It is awesome It is awesome
-    </div>
-    <div class="discussion-footer">
-        <div class="discussion-likes"><i class="far fa-thumbs-up"></i> 64</div>
-        <div class="discussion-comments"><i class="fas fa-comment" style="color : red"></i>14</div>
+        <div class="discussion-footer">
+            <div class="discussion-likes"><i class="far fa-thumbs-up"></i> 64</div>
+            <div class="discussion-comments"><i class="fas fa-comment" style="color : red"></i>14</div>
+        </div>
+    </div>*@
+
+
+
+
+<div class="modal fade" id="newPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form asp-action="Add">
+                    <div class="form-group">
+                        <label for="Title">Title</label>
+                        <input name="Title" class="form-control" id="Title" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="Content">Content</label>
+                        <textarea rows="10" name="Content" class="form-control" id="Content" placeholder="Content"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+        </div>
     </div>
 </div>

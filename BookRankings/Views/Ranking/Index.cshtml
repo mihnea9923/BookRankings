@@ -4,81 +4,22 @@
             Order by
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Rating</a>
-            <a class="dropdown-item" href="#">Votes</a>
-            <a class="dropdown-item" href="#">Your Rating</a>
+            <a class="dropdown-item" data-ajax="true" asp-action="Sort" asp-route-sortOption="0" data-ajax-update="#container">Rating</a>
+            <a class="dropdown-item" data-ajax="true" asp-action="Sort" asp-route-sortOption="1" data-ajax-update="#container">Votes</a>
+            <a class="dropdown-item" data-ajax="true" asp-action="Sort" asp-route-sortOption="2" data-ajax-update="#container">Your Rating</a>
         </div>
     </div>
     <form asp-controller="" asp-action="" class="search-form flex-right">
         <div class="search-container">
-            <input class="form-control search-box" style="display:inline-block" placeholder="Search..." />
+            <input onkeyup="searchRanking()" id="rankingSearchInput"  class="form-control search-box" style="display:inline-block" placeholder="Search..." />
             <button type="submit" class="search-books"><i class="bi bi-search"></i></button>
         </div>
     </form>
 
 </div>
-<table class="table table-striped" id="booksRanking">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Author</th>
-            <th scope="col">Rating</th>
-            <th scope="col">Your Rating</th>
-            <th scope="col">Votes</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Ferma Animalelor</td>
-            <td>George Orwell</td>
-            <td>7.8</td>
-            <td>8.1</td>
-            <td>12333</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Ferma Animalelor</td>
-            <td>George Orwell</td>
-            <td>7.8</td>
-            <td>8.1</td>
-            <td>12333</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Ferma Animalelor</td>
-            <td>George Orwell</td>
-            <td>7.8</td>
-            <td>8.1</td>
-            <td>12333</td>
-        </tr>
-        <tr>
-            <th scope="row">4</th>
-            <td>Ferma Animalelor</td>
-            <td>George Orwell</td>
-            <td>7.8</td>
-            <td>8.1</td>
-            <td>12333</td>
-        </tr>
-        <tr>
-            <th scope="row">5</th>
-            <td>Ferma Animalelor</td>
-            <td>George Orwell</td>
-            <td>7.8</td>
-            <td>8.1</td>
-            <td>12333</td>
-        </tr>
-         <tr>
-            <th scope="row">6</th>
-            <td>Ferma Animalelor</td>
-            <td>George Orwell</td>
-            <td>7.8</td>
-            <td>8.1</td>
-            <td>12333</td>
-        </tr>
-    </tbody>
-</table>
 
+<div id="container">
+    <partial name="_RankingTable" model="@Model" />
+</div>
 
 
