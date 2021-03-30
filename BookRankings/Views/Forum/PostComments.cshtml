@@ -1,4 +1,187 @@
-﻿<div class="discussion">
+﻿@using BookRankings.Model
+@model Post
+@{
+    Stack<Comment> comments = new Stack<Comment>();
+    void dfs(Comment comment)
+    {
+        if (comment == null)
+            return;
+
+        foreach (var it in comment.Subcomments)
+        {
+            comments.Push(comment);
+            dfs(it);
+        }
+    }
+    foreach (var comment in Model.Comments)
+        dfs(comment);
+}
+
+
+<div class="discussion">
+    <div class="discussion-header">
+        <div class="discussion-book">
+            @Model.Title
+        </div>
+        <span class="discussion-date">
+            <i class="far fa-clock"></i> @Model.PostedDate.ToShortDateString()
+        </span>
+    </div>
+    <div class="discussion-content">
+        @Model.Content
+    </div>
+    <div class="discussion-footer-container discussion-footer-replys">
+        <div class="discussion-footer">
+            <div class="discussion-likes"><i class="far fa-thumbs-up"></i> @Model.Likes</div>
+            <div class="discussion-comments"><i class="fas fa-comment" style="color: #c69963"></i>@Model.CommentsNr</div>
+        </div>
+    </div>
+    @foreach (var comment in Model.Comments)
+    {
+        <div class="discussion-replys">
+            <div class="discussion-reply">
+                <div class="discussion-reply-header">
+                    <p class="discussion-reply-author">
+                        @comment.User.Name
+                    </p>
+                    <span class="discussion-reply-date">
+                        <i class="far fa-clock"></i> @comment.AddedDate.ToShortDateString()
+                    </span>
+                </div>
+                <div class="discussion-reply-content">
+                    @comment.Content
+                </div>
+                <div class="discussion-reply-footer" id="@comment.Id">
+                    <div class="discussion-reply-footer-options" data-toggle="modal" data-target="#subcomment">
+                        <span onclick="loadCommentId('@comment.Id');loadPostId('@Model.Id')" class="discussion-reply-icon"> <i class="fas fa-reply"></i> Reply </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="subcomment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form asp-action="AddCommentToComment">
+                    <div class="form-group">
+                        <input name="commentId" class="form-control" id="commentId" type="hidden">
+                        <input name="postId" type="hidden" class="form-control" id="postId" />
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="10" name="Content" class="form-control" id="Content" placeholder="Content"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        let postId = '@Model.Id'
+            $.get('/Forum/GetPostSubcomments?postId=' + postId, function (data) {
+                for (let i = 0; i < data.length; i++) {
+                    console.log(data[i])
+                    var subcomm = ` <div class="discussion-reply">
+                <div class="discussion-reply-header">
+                    <p class="discussion-reply-author">
+                        ${data[i].userName}
+                    </p>
+                    <span class="discussion-reply-date">
+                        <i class="far fa-clock"></i> ${data[i].addedDate}
+                    </span>
+                </div>
+                <div class="discussion-reply-content">
+                    ${data[i].content}
+                </div>
+                <div class="discussion-reply-footer" id="${data[i].id}">
+                    <div class="discussion-reply-footer-options" data-toggle="modal" data-target="#subcomment">
+                        <span onclick="loadCommentId('${data[i].id}');loadPostId('@Model.Id')" class="discussion-reply-icon"> <i class="fas fa-reply"></i> Reply </span>
+                    </div>
+                </div>
+            </div>`
+                    $('#' + data[i].parentId).append(subcomm)
+                }
+            })
+    })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="discussion">
     <div class="discussion-header">
         <div class="discussion-book">
             Ferma Animalelor
@@ -111,4 +294,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@

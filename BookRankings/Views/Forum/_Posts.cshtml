@@ -4,7 +4,7 @@
 @foreach (var discussion in Model)
 {
     <div class="discussion" >
-        <div class="discussion-header">
+        <div class="discussion-header" onclick="goToCommentsSection('@discussion.Post.Id')">
             <div class="discussion-book">
                 @discussion.Post.Title
             </div>
@@ -19,14 +19,39 @@
             @if (discussion.Liked)
             {
                 <a class="discussion-likes discussion-likes-link" data-ajax="true"
-                   data-ajax-update="#container" asp-action="AddLike" asp-route-id="@discussion.Post.Id"><i class="far fa-thumbs-up" style="color:red"></i> @discussion.Post.Likes</a>
+                   data-ajax-update="#container" asp-action="AddLike" asp-route-id="@discussion.Post.Id"><i class="far fa-thumbs-up" ></i> @discussion.Post.Likes</a>
             }
             else
             {
                 <a class="discussion-likes discussion-likes-link" data-ajax="true"
-                   data-ajax-update="#container" asp-action="AddLike" asp-route-id="@discussion.Post.Id"><i class="far fa-thumbs-up"></i> @discussion.Post.Likes</a>
+                   data-ajax-update="#container" asp-action="AddLike" asp-route-id="@discussion.Post.Id"><i class="far fa-thumbs-up" style="color: #c69963"></i> @discussion.Post.Likes</a>
             }
-            <a class="discussion-comments"><i class="fas fa-comment" style="color : red"></i> @discussion.Post.CommentsNr</a>
+            <a class="discussion-comments"><i class="fas fa-comment" style="color: #c69963"></i> @discussion.Post.CommentsNr</a>
+            <a onclick="loadPostId('@discussion.Post.Id')" data-toggle="modal" data-target="#reply" class="discussion-reply-forum"><i class="fas fa-reply" style="color: #c69963;margin-right : 5px"></i> </a>
         </div>
     </div>
 }
+
+
+
+
+<div class="modal fade" id="reply" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form asp-action="AddCommentToPost">
+                    <div class="form-group">
+                        <input name="postId" class="form-control" id="postId" type="hidden">
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="10" name="Content" class="form-control" id="Content" placeholder="Content"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

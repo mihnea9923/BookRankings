@@ -37,7 +37,8 @@ namespace BookRankings
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddDbContext<BooksDbContext>(options => options.UseLazyLoadingProxies().UseSqlServer(
                 Configuration.GetConnectionString("BooksContext")));
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+   options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddRazorPages();
             services.AddScoped<IBookRepository, EFBookRepository>();
             services.AddScoped<IUserRepository, EFUserRepository>();

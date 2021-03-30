@@ -69,7 +69,63 @@ namespace BookRankings.Controllers
             return PartialView("_Posts", CreateViewModel(postService.GetAll().ToList()));
         }
 
+        public IActionResult AddCommentToPost(Guid postId , Comment comment)
+        {
+            var identityUser = userManager.GetUserAsync(User).GetAwaiter().GetResult();
+            var user = userService.GetByIdentityUserId(identityUser.Id);
+            comment.AddedDate = DateTime.Now;
+            comment.DepthLevel = 1;
+            comment.User = user;
+            var post = postService.Get(postId);
+            post.Comments.Add(comment);
+            post.CommentsNr++;
+            postService.Update(post);
+            return RedirectToAction("Index");
+        }
 
+        public IActionResult PostComments(Guid postId)
+        {
+            var post = postService.Get(postId);
+            return View(post);
+        }
+
+        public IActionResult AddCommentToComment(Guid commentId ,Guid postId, Comment comment)
+        {
+            comment.ParentId = commentId;
+            comment.AddedDate = DateTime.Now;
+            var identityUser = userManager.GetUserAsync(User).GetAwaiter().GetResult();
+            var user = userService.GetByIdentityUserId(identityUser.Id);
+            comment.User = user;
+            var parentComment = commentService.Get(commentId);
+            comment.DepthLevel = parentComment.DepthLevel + 1;
+            parentComment.Add(comment);
+            commentService.Update(parentComment);
+            var post = postService.Get(postId);
+            post.CommentsNr++;
+            postService.Update(post);
+            return RedirectToAction("PostComments",new {postId = postId});
+        }
+        public List<SubcommentViewModel> GetPostSubcomments(Guid postId)
+        {
+            var post = postService.Get(postId);
+            var model = commentService.Dfs(post.Comments);
+            List<SubcommentViewModel> subcomments = new List<SubcommentViewModel>();
+            for (int i = 0; i < model.Length; i++)
+            {
+                subcomments.Add(new SubcommentViewModel()
+                {
+                    AddedDate = model[i].AddedDate.ToShortDateString(),
+                    Content = model[i].Content,
+                    Id = model[i].Id,
+                    ParentId = model[i].ParentId,
+                    UserName = model[i].User.Name,
+                    DepthLevel = model[i].DepthLevel
+
+                });
+            }
+            subcomments = subcomments.OrderBy(o => o.DepthLevel).ToList();
+            return subcomments;
+        }
         private List<PostLikedViewModel>  CreateViewModel(List<Post> posts)
         {
             var identityUser = userManager.GetUserAsync(User).GetAwaiter().GetResult();

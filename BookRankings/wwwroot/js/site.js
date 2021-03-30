@@ -87,8 +87,17 @@ function searchPosts() {
     )
 }
 
-function updateBooks(data) {
-    document.getElementById('container').innerHTML = data
+function loadPostId(value) {
+    $('#postId').val(value)
+}
+
+function goToCommentsSection(postId) {
+    location.replace('https://localhost:44324/Forum/PostComments?postId=' + postId)
+}
+
+
+function loadCommentId(value) {
+    $('#commentId').val(value)
 }
 
 function stopBubbling($event) { event.stopPropagation() }
