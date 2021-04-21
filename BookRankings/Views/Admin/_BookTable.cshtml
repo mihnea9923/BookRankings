@@ -13,6 +13,7 @@
             <th scope="col">Author</th>
             <th scope="col">Photo</th>
             <th scope="col">Added By</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +28,7 @@
                     <img src="~/BookPhotos/@path" class="book-table-image" />
                 </td>
                 <td>@book.AddedBy.Name</td>
+                <td><a class="btn btn-light" asp-action="RemoveBook" asp-controller="Admin" asp-route-id="@book.ISBN" data-ajax="true" data-ajax-update="#table"><i class="fa fa-trash"></i> Remove</a></td>
             </tr>
             id++;
 

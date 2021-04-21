@@ -21,40 +21,54 @@ namespace BookRankings.Controllers
         private readonly UserService userService;
         private readonly UserManager<IdentityUser> userManager;
 
-        public AdminController(BookService bookService , UserService userService ,
+        public AdminController(BookService bookService, UserService userService,
             UserManager<IdentityUser> userManager)
         {
             this.bookService = bookService;
             this.userService = userService;
             this.userManager = userManager;
         }
-        
+
         public IActionResult Index()
         {
             var books = bookService.GetAll();
             return View(books);
         }
         [HttpPost]
-        public IActionResult Add(Book book , List<int> nr)
+        public IActionResult Add(Book book, List<int> nr)
         {
             var identityUser = userManager.GetUserAsync(User).GetAwaiter().GetResult();
             var user = userService.GetByIdentityUserId(identityUser.Id);
             book.Published = DateTime.Now;
             book.AddedBy = user;
             bookService.Add(book);
-            if(Request.Form.Files != null)
+            if (Request.Form.Files != null)
             {
-                bookService.AddBookPhoto(Request.Form.Files[0] , book.ISBN );
+                bookService.AddBookPhoto(Request.Form.Files[0], book.ISBN);
             }
             return RedirectToAction("Index");
         }
         public IActionResult Search(string keyword)
         {
-            keyword = keyword.ToLower();
-            Expression<Func<Book, bool>> filter = x => x.Author.ToLower().Contains(keyword) ||
-                                                       x.Name.ToLower().Contains(keyword) ||
-                                                       x.AddedBy.Name.ToLower().Contains(keyword);
-            var books = bookService.GetAll(filter, null, null);
+            IEnumerable<Book> books;
+            if (keyword != null && keyword.Trim() != "")
+            {
+                keyword = keyword.ToLower();
+                Expression<Func<Book, bool>> filter = x => x.Author.ToLower().Contains(keyword) ||
+                                                           x.Name.ToLower().Contains(keyword) ||
+                                                           x.AddedBy.Name.ToLower().Contains(keyword);
+                books = bookService.GetAll(filter, null, null);
+            }
+            else
+            {
+                books = bookService.GetAll(null, null, null);
+            }
+            return PartialView("_BookTable", books);
+        }
+        public IActionResult RemoveBook(string id)
+        {
+            bookService.RemoveBook(id);
+            var books = bookService.GetAll(null, null, null);
             return PartialView("_BookTable", books);
         }
     }

@@ -58,7 +58,7 @@ function loadModal(description) {
 
 function search() {
     value = document.getElementById('searchInput').value
-    $.get('Home/Search?keyword=' + value,
+    $.get('/Home/Search?keyword=' + value,
         function (data) {
             $('#container').html(data)
         }

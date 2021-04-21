@@ -20,5 +20,11 @@ namespace BookRankings.DataAccess
         {
             return context.Books.Where(book => book.Author == author && book.Name == name).FirstOrDefault();
         }
+
+        public void Remove(string id)
+        {
+            context.Books.Remove(context.Books.Find(id));
+            context.SaveChanges();
+        }
     }
 }

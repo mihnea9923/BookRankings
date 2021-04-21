@@ -30,9 +30,14 @@ namespace BookRankings.Controllers
             this.userManager = userManager;
             this.rankingService = rankingService;
         }
-
         public IActionResult Index()
         {
+            return View();
+        }
+
+        public IActionResult Ratings()
+        {
+            
             var identityUser = userManager.GetUserAsync(User).GetAwaiter().GetResult();
             var user = userService.GetByIdentityUserId(identityUser.Id);
             return View(user.Ratings);
@@ -52,7 +57,7 @@ namespace BookRankings.Controllers
             ratingService.Add(rating);
             rankingService.AddByBook(rating);
             userService.AddRating(user, rating);
-            return RedirectToAction("Index");
+            return RedirectToAction("Ratings");
         }
         public IActionResult Remove(Guid id)
         {

@@ -31,5 +31,10 @@ namespace BookRankings.BusinessLogic
         {
             return bookRepository.Get(author, name);
         }
+
+        public void RemoveBook(string id)
+        {
+            bookRepository.Remove(id);
+        }
     }
 }
