@@ -35,6 +35,7 @@ namespace BookRankings.Controllers
             return View(books);
         }
         [HttpPost]
+        [Authorize(Roles ="admin")]
         public IActionResult Add(Book book, List<int> nr)
         {
             var identityUser = userManager.GetUserAsync(User).GetAwaiter().GetResult();
@@ -65,6 +66,8 @@ namespace BookRankings.Controllers
             }
             return PartialView("_BookTable", books);
         }
+        [Authorize(Roles = "admin")]
+
         public IActionResult RemoveBook(string id)
         {
             bookService.RemoveBook(id);

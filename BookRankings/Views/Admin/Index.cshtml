@@ -1,21 +1,37 @@
 ﻿@using BookRankings.Model;
 @model IEnumerable<Book>
 @{int id = 1; }
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    var user = UserManager.GetUserAsync(User).GetAwaiter().GetResult();
+    bool loggedIn = signInManager.IsSignedIn(User) == true;
+    bool isAdmin = false;
+    if (loggedIn)
+    {
+        isAdmin = UserManager.IsInRoleAsync(user, "admin").GetAwaiter().GetResult();
+    }
+}
 <div class="ranking-header">
     <form asp-controller="Admin" asp-action="Search" class="search-form no-margin" data-ajax="true"
-           data-ajax-update="#table">
+          data-ajax-update="#table">
         <div class="search-container">
             <input name="keyword" class="form-control search-box" style="display:inline-block" placeholder="Search..." />
             <button type="submit" class="search-books"><i class="bi bi-search"></i></button>
         </div>
     </form>
-    <div class="new-book-container">
-        <button class="new-book-button" data-toggle="modal" data-target="#addBook"><i class="bi bi-plus-circle"></i>  Add</button>
-    </div>
+    @if (isAdmin)
+    {
+
+        <div class="new-book-container">
+            <button class="new-book-button" data-toggle="modal" data-target="#addBook"><i class="bi bi-plus-circle"></i>  Add</button>
+        </div>
+    }
 
 </div>
 <div id="table">
-       <partial name="_BookTable" model="@Model" />
+    <partial name="_BookTable" model="@Model" />
 </div>
 
 

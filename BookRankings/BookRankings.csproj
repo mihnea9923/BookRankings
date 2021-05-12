@@ -32,4 +32,8 @@
     <ProjectReference Include="..\BookRankings.Model\BookRankings.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\UsersPhotos\" />
+  </ItemGroup>
+
 </Project>

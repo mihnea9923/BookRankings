@@ -28,12 +28,13 @@ namespace BookRankings
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services )
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddDbContext<BooksDbContext>(options => options.UseLazyLoadingProxies().UseSqlServer(
                 Configuration.GetConnectionString("BooksContext")));
@@ -54,6 +55,7 @@ namespace BookRankings
             services.AddScoped<RatingService>();
             services.AddScoped<UserService>();
             services.AddScoped<UserLikeService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

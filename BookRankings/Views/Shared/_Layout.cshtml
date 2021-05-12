@@ -1,4 +1,18 @@
 ﻿<!DOCTYPE html>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    var user = UserManager.GetUserAsync(User).GetAwaiter().GetResult();
+    bool loggedIn = signInManager.IsSignedIn(User) == true;
+    bool isAdmin = false;
+    bool isUser = false;
+    if (loggedIn)
+    {
+        isAdmin = UserManager.IsInRoleAsync(user, "admin").GetAwaiter().GetResult();
+        isUser = UserManager.IsInRoleAsync(user, "user").GetAwaiter().GetResult();
+    }
+}
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -24,17 +38,22 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1 ">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark navbar-new-item" asp-area="" asp-controller="Home" asp-action="Ratings">Home</a>
-                        </li>
-                        @*<li class="nav-item">
-                            <a class="nav-link text-dark navbar-new-item" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark navbar-new-item" asp-area="" asp-controller="Forum" asp-action="Index">Forum</a>
-                        </li>
+                        @if (isUser && loggedIn)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark navbar-new-item" asp-area="" asp-controller="Home" asp-action="Ratings">Home</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark navbar-new-item" asp-area="" asp-controller="Forum" asp-action="Index">Forum</a>
+                            </li>
+                        }
+
+
+
                         <li class="nav-item">
                             <a class="nav-link text-dark navbar-new-item" asp-area="" asp-controller="Admin" asp-action="Index">Books</a>
                         </li>

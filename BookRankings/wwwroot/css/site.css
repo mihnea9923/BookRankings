@@ -167,3 +167,8 @@ td, th {
     vertical-align: initial !important;
 }
 
+.profile-photo{
+    width : 50px;
+    object-fit : cover;
+    border-radius : 100%;
+}
